@@ -1,0 +1,2 @@
+# Dziennik
+Dziennik elektroniczny
