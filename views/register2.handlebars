@@ -1,0 +1,50 @@
+<h2 class="page-header">Rejestracja nauczyciela</h2>
+{{#if errors}}
+      {{#each errors}}
+        <div class="alert alert-danger">{{msg}}</div>
+      {{/each}}
+{{/if}}
+<form method="post" action="/users/register2">
+   <div class="form-group">
+    <label>Imię</label>
+    <input type="text" class="form-control" placeholder="Imię" name="name">
+  </div>
+  <div class="form-group">
+    <label>Nazwisko</label>
+    <input type="text" class="form-control" placeholder="Nazwisko" name="lastname">
+  </div>
+  <div class="form-group">
+    <label>Przedmiot</label>
+    <select class="form-control" name="subject">
+      <option value="matematyka">matematyka</option>
+      <option value="historia">historia</option>
+      <option value="polski">język polski</option>
+      <option value="niemiecki">język niemiecki</option>
+      <option value="angielski">język angielski</option>
+      <option value="fizyka">fizyka</option>
+      <option value="chemia">chemia</option>
+      <option value="geografia">geografia</option>
+      <option value="wf">wychowanie fizyczne</option>
+      <option value="religia">religia</option>
+      <option value="biologia">biologia</option>
+      <option value="informatyka">informatyka</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Nazwa użytkownika</label>
+    <input type="text" class="form-control" placeholder="Nazwa użytkownika" name="username">
+  </div>
+   <div class="form-group">
+    <label>Email</label>
+    <input type="email" class="form-control" placeholder="Email" name="email">
+  </div>
+  <div class="form-group">
+    <label>Hasło</label>
+    <input type="password" class="form-control" placeholder="Hasło" name="password">
+  </div>
+  <div class="form-group">
+    <label>Potwierdź hasło</label>
+    <input type="password" class="form-control" placeholder="Hasło" name="password2">
+  </div>
+  <button type="submit" class="btn btn-default">Zarejestruj</button>
+</form>

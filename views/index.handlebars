@@ -1,0 +1,54 @@
+<h2 class="page-header">Oceny</h2>
+{{#if errors}}
+      {{#each errors}}
+        <div class="alert alert-danger">{{msg}}</div>
+      {{/each}}
+{{/if}}
+<form method="post" action="/users/grade">
+   <div class="form-group">
+    <label>Imię</label>
+    <input type="text" class="form-control" placeholder="Imię" name="name">
+  </div>
+  <div class="form-group">
+    <label>Nazwisko</label>
+    <input type="text" class="form-control" placeholder="Nazwisko" name="lastname">
+  </div>
+  <div class="form-group">
+    <label>Klasa</label>
+    <select class="form-control" name="klasa">
+      <option value="1A">1A</option>
+      <option value="1B">1B</option>
+      <option value="1C">1C</option>
+      <option value="1D">1D</option>
+      <option value="2A">2A</option>
+      <option value="2B">2B</option>
+      <option value="2C">2C</option>
+      <option value="2D">2D</option>
+      <option value="3A">3A</option>
+      <option value="3B">3B</option>
+      <option value="3C">3C</option>
+      <option value="3D">3D</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Przedmiot</label>
+    <select class="form-control" name="subject">
+      <option value="matematyka">matematyka</option>
+      <option value="historia">historia</option>
+      <option value="polski">język polski</option>
+      <option value="niemiecki">język niemiecki</option>
+      <option value="angielski">język angielski</option>
+      <option value="fizyka">fizyka</option>
+      <option value="chemia">chemia</option>
+      <option value="geografia">geografia</option>
+      <option value="wf">wychowanie fizyczne</option>
+      <option value="religia">religia</option>
+      <option value="biologia">biologia</option>
+      <option value="informatyka">informatyka</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Ocena</label>
+    <input type="text" class="form-control" placeholder="Ocena" name="grade">
+  </div>
+  <button type="submit" class="btn btn-default">Dodaj</button>

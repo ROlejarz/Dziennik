@@ -1,0 +1,50 @@
+<h2 class="page-header">Rejestracja ucznia</h2>
+{{#if errors}}
+      {{#each errors}}
+        <div class="alert alert-danger">{{msg}}</div>
+      {{/each}}
+{{/if}}
+<form method="post" action="/users/register">
+   <div class="form-group">
+    <label>Imię</label>
+    <input type="text" class="form-control" placeholder="Imię" name="name">
+  </div>
+  <div class="form-group">
+    <label>Nazwisko</label>
+    <input type="text" class="form-control" placeholder="Nazwisko" name="lastname">
+  </div>
+  <div class="form-group">
+    <label>Klasa</label>
+    <select class="form-control" name="klasa">
+      <option value="1A">1A</option>
+      <option value="1B">1B</option>
+      <option value="1C">1C</option>
+      <option value="1D">1D</option>
+      <option value="2A">2A</option>
+      <option value="2B">2B</option>
+      <option value="2C">2C</option>
+      <option value="2D">2D</option>
+      <option value="3A">3A</option>
+      <option value="3B">3B</option>
+      <option value="3C">3C</option>
+      <option value="3D">3D</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Nazwa użytkownika</label>
+    <input type="text" class="form-control" placeholder="Nazwa użytkownika" name="username">
+  </div>
+   <div class="form-group">
+    <label>Email</label>
+    <input type="email" class="form-control" placeholder="Email" name="email">
+  </div>
+  <div class="form-group">
+    <label>Hasło</label>
+    <input type="password" class="form-control" placeholder="Hasło" name="password">
+  </div>
+  <div class="form-group">
+    <label>Potwierdź hasło</label>
+    <input type="password" class="form-control" placeholder="Hasło" name="password2">
+  </div>
+  <button type="submit" class="btn btn-default">Zarejestruj</button>
+</form>
