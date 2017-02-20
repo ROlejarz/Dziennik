@@ -1,4 +1,4 @@
-<h2 class="page-header">Oceny</h2>
+<h2 class="page-header">Dodaj ocenę</h2>
 {{#if errors}}
       {{#each errors}}
         <div class="alert alert-danger">{{msg}}</div>
@@ -31,24 +31,7 @@
     </select>
   </div>
   <div class="form-group">
-    <label>Przedmiot</label>
-    <select class="form-control" name="subject">
-      <option value="matematyka">matematyka</option>
-      <option value="historia">historia</option>
-      <option value="polski">język polski</option>
-      <option value="niemiecki">język niemiecki</option>
-      <option value="angielski">język angielski</option>
-      <option value="fizyka">fizyka</option>
-      <option value="chemia">chemia</option>
-      <option value="geografia">geografia</option>
-      <option value="wf">wychowanie fizyczne</option>
-      <option value="religia">religia</option>
-      <option value="biologia">biologia</option>
-      <option value="informatyka">informatyka</option>
-    </select>
-  </div>
-  <div class="form-group">
     <label>Ocena</label>
-    <input type="text" class="form-control" placeholder="Ocena" name="grade">
+    <input type="number" step=0.5 min=1 max=6 class="form-control" placeholder="Ocena" name="grade">
   </div>
   <button type="submit" class="btn btn-default">Dodaj</button>

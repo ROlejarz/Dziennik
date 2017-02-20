@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
-
 var UserSchema = mongoose.Schema({
 	username: {
 		type: String,
@@ -26,6 +25,9 @@ var UserSchema = mongoose.Schema({
 	},
 	role: {
 		type: String
+	},
+	oceny: {
+		type: Array
 	}
 });
 
@@ -38,10 +40,6 @@ module.exports.createUser = function(newUser, callback){
 	        newUser.save(callback);
 	    });
 	});
-}
-
-module.exports.updateUser = function(name,lastname,klasa,subject,grade){
-	User.update({name:name, lastname:lastname, klasa:klasa},{$push:{oceny:{przedmiot:subject,ocena:grade}}});
 }
 
 module.exports.getUserByUsername = function(username, callback){

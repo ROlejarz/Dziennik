@@ -1,12 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/users/nauczyciel', ensureAuthenticated, function(req, res){
-	res.render('index');
-});
-
-router.get('/', ensureAuthenticated, function(req, res){
-	res.render('index');
+router.get('/users/uczen', ensureAuthenticated, function(req, res){
+	res.render('index2');
 });
 
 function ensureAuthenticated(req, res, next){

@@ -5,6 +5,19 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var User = require('../models/user');
 
+// Strona ucznia
+router.get('/uczen', function(req, res){
+	//var dane = User.find({name:req.user.name, lastname:req.user.lastname, klasa:req.user.klasa},{oceny:""});
+	var dane = (req.user.oceny);
+	console.log(dane);
+	res.render('index2', {oceny: dane});
+});
+
+//Strona nauczyciela
+router.get('/nauczyciel', function(req, res){
+	res.render('index');
+});
+
 // Rejestracja
 router.get('/register', function(req, res){
 	res.render('register');
@@ -19,9 +32,8 @@ router.get('/login', function(req, res){
 	res.render('login');
 });
 
-// Dodawanie ocen
-router.get('/grade', function(req, res){
-	res.render('index');
+router.get('/', function(req, res){
+	res.render('login');
 });
 
 // Rejestracja ucznia
@@ -98,7 +110,7 @@ router.post('/register2', function(req, res){
 	var errors = req.validationErrors();
 
 	if(errors){
-		res.render('register',{
+		res.render('register2',{
 			errors:errors
 		});
 	} else {
@@ -129,14 +141,13 @@ router.post('/grade', function(req, res){
 	var name = req.body.name;
 	var lastname = req.body.lastname;
 	var klasa = req.body.klasa;
-	var subject = req.body.subject;
+	var subject = req.user.subject;
 	var grade = req.body.grade;
 
 	// Walidacja
 	req.checkBody('name', 'Imię jest wymagane').notEmpty();
 	req.checkBody('lastname', 'Nazwisko jest wymagane').notEmpty();
 	req.checkBody('klasa', 'Klasa jest wymagana').notEmpty();
-	req.checkBody('subject', 'Przedmiot jest wymagany').notEmpty();
 	req.checkBody('grade', 'Ocena jest wymagana').notEmpty();
 
 	var errors = req.validationErrors();
@@ -146,11 +157,14 @@ router.post('/grade', function(req, res){
 			errors:errors
 		});
 	} else {
-		User.updateUser(name,lastname,klasa,subject,grade);
-
+		User.findOneAndUpdate({name:name, lastname:lastname, klasa:klasa}, {$push:{oceny:{przedmiot:subject,ocena:grade}}}, function(err,doc){
+			if(err){
+				console.log("Cos poszlo nie tak!");
+			}
+			//console.log(doc.oceny);
+		});
 		req.flash('success_msg', 'Pomyślnie dodano ocenę.');
-
-		res.redirect('/users/grade');
+		res.redirect('/');
 	}
 });
 
@@ -185,9 +199,15 @@ passport.deserializeUser(function(id, done) {
 });
 
 router.post('/login',
-  passport.authenticate('local', {successRedirect:'/users/grade', failureRedirect:'/users/login',failureFlash: true}),
+  passport.authenticate('local', {failureRedirect:'/users/login',failureFlash: true}),
   function(req, res) {
-    res.redirect('/users/grade');
+  	//console.log(req.user);
+    if(req.user.role == 'uczen') {
+		res.redirect('/users/uczen');
+	} 
+	else if (req.user.role == 'nauczyciel') {
+		res.redirect('/users/nauczyciel');
+	}
   });
 
 router.get('/logout', function(req, res){
